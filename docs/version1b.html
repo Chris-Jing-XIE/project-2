@@ -1,0 +1,32 @@
+<html>
+<head>
+    <title>Chris INF1339 Project 2</title>
+    <style>
+        .output {color: chartreuse;}
+    </style>
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+    <script>
+        //STORE some data in "global" variables known to all functions
+        var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=rainbow&api-key=iGRJBxHl5BzZ4Cs6AjByeQ6lVpflBOxg";
+        var articleCount = 0
+        //SETUP is a standard way P5 starts a script
+        function setup(){
+            //p5 usually used for drawing
+            noCanvas();
+            //SEND the URL and when the data comes back, run the function "gotData"
+            loadJSON(url, gotData);
+        }
+        //gotData for now just announces itself
+        function gotData(data) {
+            alert("FUNCTION GOTDATA WAS ACTIVATED")
+            document.getElementById("test_output").innerHTML =data.response.docs[0].headline.main
+        }
+    </script>
+</head>
+<body>
+    <h1>New York Times API: Articles from all time about rainbows</h1>
+    <!--a<p>(paragraph)element we will use for output-->
+    <!--it's name is "test_output" and it is styled by the class "output"-->
+    <p id="test_output" class="output"></p>
+</body>
+</html>
